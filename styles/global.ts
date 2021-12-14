@@ -25,6 +25,10 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Inter', sans-serif;
   }
 
+  #__next {
+    height: 100vh;
+  }
+
   // all media elements set to block and full width
   img,
   svg,
