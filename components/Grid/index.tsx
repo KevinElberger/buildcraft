@@ -20,7 +20,7 @@ export const Grid = ({ rows, columns }: Props) => {
 
   return (
     <GridWrapper>
-      <TileContainer>
+      <TileContainer rows={rows} columns={columns}>
         { tileset }
       </TileContainer>
     </GridWrapper>
@@ -34,9 +34,9 @@ const GridWrapper = styled.div`
   background: ${({ theme }) => theme.white};
 `;
 
-const TileContainer = styled.div`
+const TileContainer = styled.div<Props>`
   display: grid;
   grid-gap: 2px;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(${(props) => props.rows}, 1fr);
+  grid-template-columns: repeat(${(props) => props.columns}, 1fr);
 `;
