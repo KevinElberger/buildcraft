@@ -1,13 +1,12 @@
 export const lightTheme = {
-  body: '#fffff',
-  main: '#5C14DB',
-  mainColor: '#FFFFFF',
-  accent: '#E5DE17',
-  accentColor: '#161616',
-  secondary: '#FFFFFF',
-  secondaryColor: '#343434',
-  dullColor: '#343434',
-  ternary: '#000000',
-  codeColor: '#D121C5',
+  white: '#FFF',
+  black: '#1C1C1C',
+  lightgrey: '#E8E8E8',
+  grey: '#969696',
+  darkgrey: '#585757',
+  blue: '#0085FF',
+  green: '#00BA34',
+  orange: '#F98600',
+  red: '#E92C2C',
 }
 

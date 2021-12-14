@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from '../styles/global';
 import { lightTheme } from '../styles/theme.config';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyles />
@@ -15,4 +15,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp
+export default App
