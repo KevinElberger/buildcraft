@@ -8,5 +8,6 @@ export const lightTheme = {
   green: '#00BA34',
   orange: '#F98600',
   red: '#E92C2C',
+  bgGrey: '#F7F7F7'
 }
 
