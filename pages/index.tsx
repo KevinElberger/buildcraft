@@ -1,13 +1,11 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components'
-import { Grid } from '../components/Grid';
+import Map from '../features/map/Map';
 
-const Build: NextPage = () => {
+const Builder: NextPage = () => {
   return (
     <Wrapper>
-      <Content>
-        <Grid rows={6} columns={6} tileSize={32} />
-      </Content>
+      <Map />
     </Wrapper>
   )
 }
@@ -21,8 +19,4 @@ const Wrapper = styled.div`
   background: ${({ theme }) => theme.bgGrey};
 `;
 
-const Content = styled.div`
-
-`;
-
-export default Build
+export default Builder
