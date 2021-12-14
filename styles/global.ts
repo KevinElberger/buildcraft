@@ -22,6 +22,7 @@ export const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     line-height: 1;
     text-rendering: optimizeSpeed;
+    font-family: 'Inter', sans-serif;
   }
 
   // all media elements set to block and full width
