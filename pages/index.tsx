@@ -6,7 +6,7 @@ const Build: NextPage = () => {
   return (
     <Wrapper>
       <Content>
-        <Grid rows={6} columns={6} />
+        <Grid rows={6} columns={6} tileSize={32} />
       </Content>
     </Wrapper>
   )

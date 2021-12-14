@@ -5,14 +5,15 @@ import { Tile } from '../Tile';
 interface Props {
   rows: number;
   columns: number;
+  tileSize: number;
 }
 
-export const Grid = ({ rows, columns }: Props) => {
+export const Grid = ({ rows, columns, tileSize }: Props) => {
   const tileset = new Array(rows).fill(0).map(row => {
     const rows: any[] = [];
 
     new Array(columns).fill(0).forEach(column => {
-      return rows.push(<Tile />)
+      return rows.push(<Tile size={tileSize} />)
     });
 
     return rows;
@@ -34,7 +35,7 @@ const GridWrapper = styled.div`
   background: ${({ theme }) => theme.white};
 `;
 
-const TileContainer = styled.div<Props>`
+const TileContainer = styled.div<Pick<Props, 'rows' | 'columns'>>`
   display: grid;
   grid-gap: 2px;
   grid-template-rows: repeat(${(props) => props.rows}, 1fr);

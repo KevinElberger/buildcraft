@@ -1,13 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-export const Tile = () => {
-  return <TileWrapper></TileWrapper>
+interface Props {
+  size: number;
+}
+
+export const Tile = ({ size }: Props) => {
+  return <TileWrapper size={size}></TileWrapper>
 };
 
-const TileWrapper = styled.div`
-  width: 24px;
-  height: 24px;
+const TileWrapper = styled.div<Props>`
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
   cursor: pointer;
   border-radius: 2px;
   border: 1px solid ${({ theme }) => theme.lightgrey};
