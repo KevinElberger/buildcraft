@@ -11,7 +11,7 @@ export default function Map() {
   const tileSize = useSelector(selectTileSize);
 
   return (
-    <MapLayout>
+    <MapLayout data-testid="map">
       <div>
         <Grid rows={rows} columns={cols} tileSize={tileSize} />
       </div>

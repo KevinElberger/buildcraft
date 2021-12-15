@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const Tile = ({ size }: Props) => {
-  return <TileWrapper size={size}></TileWrapper>
+  return <TileWrapper size={size} role="button"></TileWrapper>
 };
 
 const TileWrapper = styled.div<Props>`

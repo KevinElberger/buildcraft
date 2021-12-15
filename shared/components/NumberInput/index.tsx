@@ -9,18 +9,18 @@ interface Props {
 
 export const NumberInput = ({ number, onChange }: Props) => {
   const onIncrement = () => {
-    onChange(number + 1);
+    if (number + 1 < 26) onChange(number + 1);
   };
   const onDecrement = () => {
-    onChange(number - 1);
+    if (number - 1 > 0) onChange(number - 1);
   };
   return (
     <Wrapper>
-      <Button onClick={onDecrement}>
+      <Button onClick={onDecrement} role="button" data-testid="subtract">
         <Dash size="16" />
       </Button>
       <div>{number}</div>
-      <Button onClick={onIncrement}>
+      <Button onClick={onIncrement} role="button" data-testid="add">
         <Plus size="16" />
       </Button>
     </Wrapper>
