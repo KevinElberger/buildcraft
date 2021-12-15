@@ -16,10 +16,17 @@ const initialState: MapState = {
 export const mapSlice = createSlice({
   name: 'map',
   initialState,
-  reducers: {},
+  reducers: {
+    setRow(state, action) {
+      state.rows = action.payload;
+    },
+    setColumn(state, action) {
+      state.columns = action.payload;
+    }
+  },
 })
 
-export const {} = mapSlice.actions
+export const { setRow, setColumn } = mapSlice.actions
 
 export const selectRows = (state: RootState) => state.map.rows;
 export const selectColumns = (state: RootState) => state.map.columns;
