@@ -13,7 +13,7 @@ export const Grid = ({ rows, columns, tileSize }: Props) => {
     const rows: any[] = [];
 
     new Array(columns).fill(0).forEach(column => {
-      return rows.push(<Tile size={tileSize} />)
+      return rows.push(<Tile size={tileSize} onClick={() => {}} />)
     });
 
     return rows;

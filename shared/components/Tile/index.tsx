@@ -5,16 +5,13 @@ import { TileSprite } from '../../config/tiles';
 interface Props {
   size: number;
   sprite?: TileSprite;
+  onClick: Function;
 }
 
-export const Tile = ({ size, sprite }: Props) => {
+export const Tile = ({ size, sprite, onClick }: Props) => {
   return (
-    <TileWrapper size={size} role="button">
-      {sprite &&
-        <>
-          <ImgWrapper sprite={sprite}></ImgWrapper>
-        </>
-      }
+    <TileWrapper onClick={() => onClick(sprite)} size={size} role="button">
+      {sprite && <ImgWrapper sprite={sprite}></ImgWrapper>}
     </TileWrapper>
   );
 };

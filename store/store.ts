@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import mapReducer from '../features/map/slice';
+import sidebarReducer from '../features/sidebar/slice';
 
 export const store = configureStore({
   reducer: {
-    map: mapReducer
+    map: mapReducer,
+    sidebar: sidebarReducer
   },
 })
 
