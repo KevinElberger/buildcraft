@@ -38,8 +38,10 @@ const TileWrapper = styled.div<Pick<Props, 'size'>>`
   cursor: pointer;
   border-radius: 2px;
   border: 1px solid ${({ theme }) => theme.lightgrey};
+  transition: transform .2s cubic-bezier(.64,.04,.35,1);
 
   &:hover {
+    transform: scale(1.07);
     border-color: ${({ theme }) => theme.black};
   }
 
