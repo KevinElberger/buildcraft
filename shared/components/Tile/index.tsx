@@ -9,8 +9,14 @@ interface Props {
 }
 
 export const Tile = ({ size, sprite, onClick }: Props) => {
+  const onMouseEnter = (event: React.MouseEvent) => {
+    const isHoldingMouseButton = event.buttons === 1;
+    if (isHoldingMouseButton) {
+      onClick(sprite);
+    }
+  };
   return (
-    <TileWrapper onClick={() => onClick(sprite)} size={size} role="button">
+    <TileWrapper onClick={() => onClick(sprite)} size={size} onMouseEnter={e => onMouseEnter(e)} role="button">
       {sprite && <ImgWrapper sprite={sprite}></ImgWrapper>}
     </TileWrapper>
   );
