@@ -9,11 +9,11 @@ import { selectActiveTile, setActiveTile } from './slice';
 export default function Sidebar() {
   const dispatch = useDispatch();
   const activeTile = useSelector(selectActiveTile);
-  const onTileClick = ({ name }: TileSprite) => {
-    dispatch(setActiveTile(name));
+  const onTileClick = (sprite: TileSprite) => {
+    dispatch(setActiveTile(sprite));
   };
   const tileset = tiles.map((sprite: TileSprite) => (
-    <div key={sprite.name} className={activeTile === sprite.name ? 'active' : ''}>
+    <div key={sprite.name} className={activeTile?.name === sprite.name ? 'active' : ''}>
       <Tile sprite={sprite} size={32} onClick={onTileClick} />
     </div>
   ));

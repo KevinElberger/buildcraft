@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { TileSprite } from '../../shared/config/tiles';
 import { RootState } from '../../store/store';
 
 export interface SidebarState {
-  activeTile: string | null;
+  activeTile: TileSprite | null;
 };
 
 const initialState: SidebarState = {

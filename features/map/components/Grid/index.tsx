@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Tile } from '../../../../shared/components/Tile';
 import { generateGrid } from '../../../../utils/generateGrid';
+import { selectActiveTile } from '../../../sidebar/slice';
+import { selectCurrentGrid, setTileInGrid } from '../../slice';
 
 interface Props {
   rows: number;
@@ -10,10 +13,21 @@ interface Props {
 }
 
 export const Grid = ({ rows, columns, tileSize }: Props) => {
-  const tileset = generateGrid(rows, columns);
+  const dispatch = useDispatch();
+  const activeTile = useSelector(selectActiveTile);
+  const currentGrid = useSelector(selectCurrentGrid);
 
-  tileset.forEach(row => {
-    row.fill(<Tile size={tileSize} onClick={() => {}} />)
+  const tileset = generateGrid(rows, columns);
+  const onTileClick = (xIndex: number, yIndex: number) => {
+    if (activeTile) {
+      dispatch(setTileInGrid({ xIndex, yIndex, sprite: activeTile }));
+    }
+  };
+
+  tileset.forEach((row: any[], xIndex: number) => {
+    for(let i = 0; i < columns; i++) {
+      row.push(<Tile size={tileSize} onClick={() => onTileClick(xIndex, i)} sprite={currentGrid[xIndex][i]} />);
+    }
   });
 
   return (

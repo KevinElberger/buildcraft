@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { generateGrid } from '../utils/generateGrid';
+import { generateGrid } from '../../utils/generateGrid';
 
 describe('GenerateGrid', () => {
   it('should return the correct default grid size', () => {

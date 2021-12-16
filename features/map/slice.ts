@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store/store';
 import { TileSprite } from '../../shared/config/tiles';
 import { generateGrid } from '../../utils/generateGrid';
@@ -21,6 +21,7 @@ const initialState: MapState = {
   },
 };
 
+// TODO: Do we care if every layer can be a different WxH?
 export const mapSlice = createSlice({
   name: 'map',
   initialState,
@@ -36,14 +37,19 @@ export const mapSlice = createSlice({
       state.tiles[state.gridLevel].forEach(col => col.push(null)) :
       state.tiles[state.gridLevel].forEach(col => col.pop());
       state.columns = action.payload;
+    },
+    setTileInGrid(state, action: PayloadAction<{ xIndex: number, yIndex: number, sprite: TileSprite }>) {
+      const { xIndex, yIndex, sprite } = action.payload;
+      state.tiles[state.gridLevel][xIndex][yIndex] = sprite;
     }
   },
 })
 
-export const { setRow, setColumn } = mapSlice.actions
+export const { setRow, setColumn, setTileInGrid } = mapSlice.actions
 
 export const selectRows = (state: RootState) => state.map.rows;
 export const selectColumns = (state: RootState) => state.map.columns;
 export const selectTileSize = (state: RootState) => state.map.tileSize;
+export const selectCurrentGrid = (state: RootState) => state.map.tiles[state.map.gridLevel];
 
 export default mapSlice.reducer
