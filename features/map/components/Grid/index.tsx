@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 } from 'uuid';
 import styled from 'styled-components';
 import { Tile } from '../../../../shared/components/Tile';
 import { generateGrid } from '../../../../utils/generateGrid';
@@ -26,7 +27,7 @@ export const Grid = ({ rows, columns, tileSize }: Props) => {
 
   tileset.forEach((row: any[], xIndex: number) => {
     for(let i = 0; i < columns; i++) {
-      row.push(<Tile size={tileSize} onClick={() => onTileClick(xIndex, i)} sprite={currentGrid[xIndex][i]} />);
+      row.push(<Tile size={tileSize} onClick={() => onTileClick(xIndex, i)} sprite={currentGrid[xIndex][i]} key={v4()} />);
     }
   });
 
