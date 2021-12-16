@@ -1,16 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store/store';
+import { Tile } from '../../shared/components/Tile';
+import { TileSprite } from '../../shared/config/tiles';
+import { generateGrid } from '../../utils/generateGrid';
 
 export interface MapState {
   rows: number;
   columns: number;
   tileSize: number;
+  tiles: Record<number, Array<TileSprite | undefined>>;
 };
 
 const initialState: MapState = {
   rows: 10,
   columns: 10,
-  tileSize: 32
+  tileSize: 32,
+  tiles: {
+    1: generateGrid(),
+  },
 };
 
 export const mapSlice = createSlice({

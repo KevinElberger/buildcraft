@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Tile } from '../../../../shared/components/Tile';
+import { generateGrid } from '../../../../utils/generateGrid';
 
 interface Props {
   rows: number;
@@ -9,14 +10,10 @@ interface Props {
 }
 
 export const Grid = ({ rows, columns, tileSize }: Props) => {
-  const tileset = new Array(rows).fill(0).map(row => {
-    const rows: any[] = [];
+  const tileset = generateGrid(rows, columns);
 
-    new Array(columns).fill(0).forEach(column => {
-      return rows.push(<Tile size={tileSize} onClick={() => {}} />)
-    });
-
-    return rows;
+  tileset.forEach(row => {
+    row.fill(<Tile size={tileSize} onClick={() => {}} />)
   });
 
   return (
