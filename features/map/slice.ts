@@ -1,6 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store/store';
-import { Tile } from '../../shared/components/Tile';
 import { TileSprite } from '../../shared/config/tiles';
 import { generateGrid } from '../../utils/generateGrid';
 
@@ -8,13 +7,15 @@ export interface MapState {
   rows: number;
   columns: number;
   tileSize: number;
-  tiles: Record<number, Array<TileSprite | undefined>>;
+  gridLevel: number;
+  tiles: Record<number, any[]>;
 };
 
 const initialState: MapState = {
   rows: 10,
   columns: 10,
   tileSize: 32,
+  gridLevel: 1,
   tiles: {
     1: generateGrid(),
   },
@@ -25,9 +26,15 @@ export const mapSlice = createSlice({
   initialState,
   reducers: {
     setRow(state, action) {
+      action.payload > state.rows ?
+      state.tiles[state.gridLevel].push(new Array(state.columns)) :
+      state.tiles[state.gridLevel].pop();
       state.rows = action.payload;
     },
     setColumn(state, action) {
+      action.payload > state.columns ?
+      state.tiles[state.gridLevel].forEach(col => col.push(null)) :
+      state.tiles[state.gridLevel].forEach(col => col.pop());
       state.columns = action.payload;
     }
   },
