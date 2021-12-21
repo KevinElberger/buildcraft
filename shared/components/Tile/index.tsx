@@ -12,7 +12,7 @@ interface Props {
 export const Tile = ({ size, sprite, x, y }: Props) => {
   return (
     <TileWrapper size={size} role="button" data-x={x} data-y={y}>
-      {sprite && <ImgWrapper sprite={sprite}></ImgWrapper>}
+      {sprite && <ImgWrapper sprite={sprite} data-x={x} data-y={y}></ImgWrapper>}
     </TileWrapper>
   );
 };

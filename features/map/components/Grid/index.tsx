@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
 import styled from 'styled-components';
@@ -40,13 +40,7 @@ export const Grid = ({ rows, columns, tileSize }: Props) => {
     let { x, y } = target.dataset;
     const isHoldingMouseButton = e.buttons === 1;
 
-    if (!x || !y) {
-      target = target.parentElement as HTMLDivElement;
-      x = target.dataset.x;
-      y = target.dataset.y;
-    }
-
-    if (!target || !isHoldingMouseButton || !activeTile) {
+    if (!target || !x || !y || !isHoldingMouseButton || !activeTile) {
       return;
     }
 
