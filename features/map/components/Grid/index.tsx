@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useRef, useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
 import styled from 'styled-components';
@@ -6,6 +6,8 @@ import { Tile } from '../../../../shared/components/Tile';
 import { generateGrid } from '../../../../utils/generateGrid';
 import { selectActiveTile } from '../../../sidebar/slice';
 import { selectCurrentGrid, setTileInGrid } from '../../slice';
+import { useMouseMove } from '../../../../shared/hooks/useMouseMove';
+import { TileSprite } from '../../../../shared/config/tiles';
 
 interface Props {
   rows: number;
@@ -19,6 +21,7 @@ export const Grid = ({ rows, columns, tileSize }: Props) => {
   const currentGrid = useSelector(selectCurrentGrid);
 
   const tileset = generateGrid(rows, columns);
+
   const onTileClick = (xIndex: number, yIndex: number) => {
     if (activeTile) {
       dispatch(setTileInGrid({ xIndex, yIndex, sprite: activeTile }));
@@ -27,13 +30,38 @@ export const Grid = ({ rows, columns, tileSize }: Props) => {
 
   tileset.forEach((row: any[], xIndex: number) => {
     for(let i = 0; i < columns; i++) {
-      row.push(<Tile size={tileSize} onClick={() => onTileClick(xIndex, i)} sprite={currentGrid[xIndex][i]} key={v4()} />);
+      row.push(<Tile size={tileSize} sprite={currentGrid[xIndex][i]} key={v4()} x={xIndex} y={i} />);
     }
   });
 
+  const containerRef = useRef(null);
+  const setTileOnMouseHover = (e: MouseEvent) => {
+    let target = e.target as HTMLDivElement;
+    let { x, y } = target.dataset;
+    const isHoldingMouseButton = e.buttons === 1;
+
+    if (!x || !y) {
+      target = target.parentElement as HTMLDivElement;
+      x = target.dataset.x;
+      y = target.dataset.y;
+    }
+
+    if (!target || !isHoldingMouseButton || !activeTile) {
+      return;
+    }
+
+    dispatch(setTileInGrid({
+      xIndex: Number(x),
+      yIndex: Number(y),
+      sprite: activeTile
+    }));
+  }
+
+  useMouseMove(containerRef, setTileOnMouseHover, [activeTile]);
+
   return (
     <GridWrapper>
-      <TileContainer rows={rows} columns={columns}>
+      <TileContainer rows={rows} columns={columns} ref={containerRef}>
         { tileset }
       </TileContainer>
     </GridWrapper>

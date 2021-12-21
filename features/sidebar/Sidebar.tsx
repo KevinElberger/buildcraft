@@ -13,8 +13,8 @@ export default function Sidebar() {
     dispatch(setActiveTile(sprite));
   };
   const tileset = tiles.map((sprite: TileSprite) => (
-    <div key={sprite.id} className={activeTile?.name === sprite.name ? 'active' : ''}>
-      <Tile sprite={sprite} size={32} onClick={onTileClick} />
+    <div key={sprite.id} className={activeTile?.name === sprite.name ? 'active' : ''} onClick={() => onTileClick(sprite)}>
+      <Tile sprite={sprite} size={32}  />
     </div>
   ));
 

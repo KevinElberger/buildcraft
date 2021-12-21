@@ -4,19 +4,14 @@ import { TileSprite } from '../../config/tiles';
 
 interface Props {
   size: number;
+  x?: number;
+  y?: number;
   sprite?: TileSprite;
-  onClick: Function;
 }
 
-export const Tile = ({ size, sprite, onClick }: Props) => {
-  const onMouseEnter = (event: React.MouseEvent) => {
-    const isHoldingMouseButton = event.buttons === 1;
-    if (isHoldingMouseButton) {
-      onClick(sprite);
-    }
-  };
+export const Tile = ({ size, sprite, x, y }: Props) => {
   return (
-    <TileWrapper onClick={() => onClick(sprite)} size={size} onMouseEnter={e => onMouseEnter(e)} role="button">
+    <TileWrapper size={size} role="button" data-x={x} data-y={y}>
       {sprite && <ImgWrapper sprite={sprite}></ImgWrapper>}
     </TileWrapper>
   );

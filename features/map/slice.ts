@@ -41,11 +41,16 @@ export const mapSlice = createSlice({
     setTileInGrid(state, action: PayloadAction<{ xIndex: number, yIndex: number, sprite: TileSprite }>) {
       const { xIndex, yIndex, sprite } = action.payload;
       state.tiles[state.gridLevel][xIndex][yIndex] = sprite;
+    },
+    clearGrid(state) {
+      Object.keys(state.tiles).forEach((level: string) => {
+        state.tiles[Number(level)] = generateGrid()
+      });
     }
   },
 })
 
-export const { setRow, setColumn, setTileInGrid } = mapSlice.actions
+export const { setRow, setColumn, setTileInGrid, clearGrid } = mapSlice.actions
 
 export const selectRows = (state: RootState) => state.map.rows;
 export const selectColumns = (state: RootState) => state.map.columns;
