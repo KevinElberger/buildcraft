@@ -17,7 +17,7 @@ export const generateGrid = (rows: number = 10, cols: number = 10, tileSize: num
 
   grid.forEach((row: any[], xIndex: number) => {
     for(let i = 0; i < cols; i++) {
-      row.push(<Tile size={tileSize} key={v4()} x={xIndex} y={i} />);
+      row[i] = <Tile size={tileSize} key={v4()} x={xIndex} y={i} />;
     }
   });
 
