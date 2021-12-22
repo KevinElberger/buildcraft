@@ -15,7 +15,7 @@ export const sidebarSlice = createSlice({
   initialState,
   reducers: {
     setActiveTile(state, action: PayloadAction<TileSprite>) {
-      state.activeTile = { ...state.activeTile, ...action.payload };
+      state.activeTile = action.payload;
     }
   },
 })

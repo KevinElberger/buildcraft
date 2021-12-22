@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store/store';
 import { TileSprite } from '../../shared/config/tiles';
-import { generateGrid } from '../../utils/generateGrid';
+import { generateEmptyGrid } from '../../utils/generateGrid';
 
 export interface MapState {
   rows: number;
@@ -17,7 +17,7 @@ const initialState: MapState = {
   tileSize: 32,
   gridLevel: 1,
   tiles: {
-    1: generateGrid(),
+    1: generateEmptyGrid(),
   },
 };
 
@@ -44,7 +44,7 @@ export const mapSlice = createSlice({
     },
     clearGrid(state) {
       Object.keys(state.tiles).forEach((level: string) => {
-        state.tiles[Number(level)] = generateGrid()
+        state.tiles[Number(level)] = generateEmptyGrid()
       });
     }
   },

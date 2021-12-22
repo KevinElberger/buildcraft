@@ -6,7 +6,7 @@ interface Props {
   size: number;
   x?: number;
   y?: number;
-  sprite?: TileSprite;
+  sprite?: TileSprite | null;
 }
 
 export const Tile = ({ size, sprite, x, y }: Props) => {

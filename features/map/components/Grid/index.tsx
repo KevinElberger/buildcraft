@@ -1,13 +1,11 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { v4 } from 'uuid';
 import styled from 'styled-components';
-import { Tile } from '../../../../shared/components/Tile';
 import { generateGrid } from '../../../../utils/generateGrid';
 import { selectActiveTile } from '../../../sidebar/slice';
-import { selectCurrentGrid, setTileInGrid } from '../../slice';
+import { setTileInGrid } from '../../slice';
 import { useMouseMove } from '../../../../shared/hooks/useMouseMove';
-import { TileSprite } from '../../../../shared/config/tiles';
+import { getDataset } from '../../../../utils/getDataset';
 
 interface Props {
   rows: number;
@@ -16,46 +14,35 @@ interface Props {
 }
 
 export const Grid = ({ rows, columns, tileSize }: Props) => {
+  const containerRef = useRef(null);
   const dispatch = useDispatch();
   const activeTile = useSelector(selectActiveTile);
-  const currentGrid = useSelector(selectCurrentGrid);
+  const tileset = generateGrid(rows, columns, tileSize);
 
-  const tileset = generateGrid(rows, columns);
-
-  const onTileClick = (xIndex: number, yIndex: number) => {
-    if (activeTile) {
-      dispatch(setTileInGrid({ xIndex, yIndex, sprite: activeTile }));
-    }
-  };
-
-  tileset.forEach((row: any[], xIndex: number) => {
-    for(let i = 0; i < columns; i++) {
-      row.push(<Tile size={tileSize} sprite={currentGrid[xIndex][i]} key={v4()} x={xIndex} y={i} />);
-    }
-  });
-
-  const containerRef = useRef(null);
-  const setTileOnMouseHover = (e: MouseEvent) => {
-    let target = e.target as HTMLDivElement;
-    let { x, y } = target.dataset;
+  const setTile = (e: React.MouseEvent, onHover: boolean = true) => {
+    const { x, y } = getDataset(e.target as HTMLElement);
     const isHoldingMouseButton = e.buttons === 1;
 
-    if (!target || !x || !y || !isHoldingMouseButton || !activeTile) {
+    if (!x || !y) {
+      return;
+    }
+
+    if (onHover && !isHoldingMouseButton) {
       return;
     }
 
     dispatch(setTileInGrid({
       xIndex: Number(x),
       yIndex: Number(y),
-      sprite: activeTile
+      sprite: activeTile!
     }));
   }
 
-  useMouseMove(containerRef, setTileOnMouseHover, [activeTile]);
+  useMouseMove(containerRef, setTile, [activeTile]);
 
   return (
     <GridWrapper>
-      <TileContainer rows={rows} columns={columns} ref={containerRef}>
+      <TileContainer rows={rows} columns={columns} ref={containerRef} onClick={(e) => setTile(e, false)}>
         { tileset }
       </TileContainer>
     </GridWrapper>
