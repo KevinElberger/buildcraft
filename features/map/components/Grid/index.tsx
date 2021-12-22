@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { generateGrid } from '../../../../utils/generateGrid';
@@ -6,6 +6,8 @@ import { selectActiveTile } from '../../../sidebar/slice';
 import { setTileInGrid } from '../../slice';
 import { useMouseMove } from '../../../../shared/hooks/useMouseMove';
 import { getDataset } from '../../../../utils/getDataset';
+import { Tile } from '../../../../shared/components/Tile';
+import { v4 } from 'uuid';
 
 interface Props {
   rows: number;
@@ -14,16 +16,15 @@ interface Props {
 }
 
 export const Grid = ({ rows, columns, tileSize }: Props) => {
-  const containerRef = useRef(null);
   const dispatch = useDispatch();
   const activeTile = useSelector(selectActiveTile);
-  const tileset = generateGrid(rows, columns, tileSize);
+  const [tileset, setTileset] = useState(generateGrid(rows, columns, tileSize));
 
   const setTile = (e: React.MouseEvent, onHover: boolean = true) => {
     const { x, y } = getDataset(e.target as HTMLElement);
     const isHoldingMouseButton = e.buttons === 1;
 
-    if (!x || !y) {
+    if (typeof x === 'undefined' || typeof y === 'undefined') {
       return;
     }
 
@@ -32,12 +33,13 @@ export const Grid = ({ rows, columns, tileSize }: Props) => {
     }
 
     dispatch(setTileInGrid({
-      xIndex: Number(x),
-      yIndex: Number(y),
+      xIndex: x,
+      yIndex: y,
       sprite: activeTile!
     }));
   }
 
+  const containerRef = useRef(null);
   useMouseMove(containerRef, setTile, [activeTile]);
 
   return (
