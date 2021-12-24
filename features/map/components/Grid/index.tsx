@@ -1,16 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { generateGrid, updateGrid } from '../../../../utils/grid';
+import { generateGrid } from '../../../../utils/grid';
 import { selectActiveTile } from '../../../sidebar/slice';
-import { setTileInGrid, selectColumns, selectRows, selectTileSize } from '../../slice';
+import { setTileInGrid, selectColumns, selectRows, selectTileSize, selectCurrentGrid } from '../../slice';
 
 import { useOnMouseMove } from '../../../../shared/hooks/useOnMouseMove';
 import { getDatasetFromElement } from '../../../../utils/getDatasetFromElement';
-import { Tile } from '../../../../shared/components/Tile';
-import { v4 } from 'uuid';
-import produce from 'immer';
-import { throttle } from '../../../../utils/throttle';
 
 interface Props {
   rows: number;
@@ -23,7 +19,8 @@ export const Grid = () => {
   const cols = useSelector(selectColumns);
   const tileSize = useSelector(selectTileSize);
   const activeTile = useSelector(selectActiveTile);
-  const [tileset, setTileset] = useState(generateGrid(rows, cols, tileSize));
+  const currentGrid = useSelector(selectCurrentGrid);
+  const tileset = generateGrid(rows, cols, tileSize, currentGrid);
 
   const setTile = (e: React.MouseEvent, onHover: boolean = true) => {
     const isHoldingMouseButton = e.buttons === 1;
@@ -41,17 +38,10 @@ export const Grid = () => {
       yIndex: y,
       sprite: activeTile!
     }));
-    setTileset(produce(tileset => {
-      tileset[x][y] = <Tile size={tileSize} key={v4()} x={x} y={y} sprite={activeTile} />;
-    }));
   }
 
   const containerRef = useRef(null);
   useOnMouseMove(containerRef, setTile, [activeTile]);
-
-  useEffect(() => {
-    throttle(setTileset(produce(tileset => updateGrid(tileset, rows, cols, tileSize))) as any, 100);
-  }, [rows, cols, tileSize]);
 
   return (
     <GridWrapper>
