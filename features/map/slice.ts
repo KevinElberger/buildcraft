@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store/store';
 import { TileSprite } from '../../shared/config/tiles';
-import { generateEmptyGrid } from '../../utils/generateGrid';
+import { generateEmptyGrid } from '../../utils/grid';
 
 export interface MapState {
   rows: number;

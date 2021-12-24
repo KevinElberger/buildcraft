@@ -1,4 +1,4 @@
-export function throttle(func: Function, delay = 50) {
+export function throttle(func: Function, delay = 20) {
   let timeout: any = null;
 
   return (...args: any) => {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { throttle } from '../../utils/throttle';
 
-export const useMouseMove = (refElement: React.MutableRefObject<null | HTMLElement>, callback: Function, deps: any[] = []) => {
+export const useOnMouseMove = (refElement: React.MutableRefObject<null | HTMLElement>, callback: Function, deps: any[] = []) => {
   useEffect(() => {
     const element = refElement?.current;
     const onMouseMove = throttle(callback);
