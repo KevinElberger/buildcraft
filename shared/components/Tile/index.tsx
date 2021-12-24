@@ -11,7 +11,7 @@ interface Props {
 
 export const Tile = ({ size, sprite, x, y }: Props) => {
   return (
-    <TileWrapper size={size} role="button" data-x={x} data-y={y}>
+    <TileWrapper size={size} role="button" data-x={x} data-y={y} sprite={sprite}>
       {sprite && <ImgWrapper sprite={sprite} data-x={x} data-y={y}></ImgWrapper>}
     </TileWrapper>
   );
@@ -26,7 +26,7 @@ const ImgWrapper = styled.div<Pick<Props, 'sprite'>>`
   background-position-y: ${props => props.sprite?.y}px;
 `;
 
-const TileWrapper = styled.div<Pick<Props, 'size'>>`
+const TileWrapper = styled.div<Pick<Props, 'size' | 'sprite'>>`
   display: flex;
   overflow: hidden;
   align-items: center;
@@ -35,7 +35,7 @@ const TileWrapper = styled.div<Pick<Props, 'size'>>`
   height: ${props => props.size}px;
   cursor: pointer;
   border-radius: 2px;
-  border: 1px solid ${({ theme }) => theme.lightgrey};
+  border: 1px solid ${(props) => props.sprite ? props.theme.black : props.theme.lightgrey};
   transition: transform .2s cubic-bezier(.64,.04,.35,1);
 
   &:hover {
