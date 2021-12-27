@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { H2 } from '../../shared/components/H2';
-import { Tile } from '../../shared/components/Tile';
+import Tile from '../../shared/components/Tile';
 import { tiles, TileSprite } from '../../shared/config/tiles';
 import { selectActiveTile, setActiveTile } from './slice';
 

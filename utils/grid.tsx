@@ -1,6 +1,6 @@
 
 import { v4 } from 'uuid';
-import { Tile } from "../shared/components/Tile";
+import Tile from '../shared/components/Tile';
 
 export const generateEmptyGrid = (rows: number = 10, cols: number = 10) => {
   let grid: any[] = [];

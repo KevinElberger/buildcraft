@@ -9,7 +9,7 @@ interface Props {
 
 export const NumberInput = ({ number, onChange }: Props) => {
   const onIncrement = () => {
-    if (number + 1 < 26) onChange(number + 1);
+    if (number + 1 < 51) onChange(number + 1);
   };
   const onDecrement = () => {
     if (number - 1 > 0) onChange(number - 1);

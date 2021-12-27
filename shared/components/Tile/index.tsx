@@ -9,13 +9,15 @@ interface Props {
   sprite?: TileSprite | null;
 }
 
-export const Tile = ({ size, sprite, x, y }: Props) => {
+const Tile = ({ size, sprite, x, y }: Props) => {
   return (
     <TileWrapper size={size} role="button" data-x={x} data-y={y} sprite={sprite}>
       {sprite && <ImgWrapper sprite={sprite} data-x={x} data-y={y}></ImgWrapper>}
     </TileWrapper>
   );
 };
+
+export default React.memo(Tile);
 
 const ImgWrapper = styled.div<Pick<Props, 'sprite'>>`
   height: 16px;
