@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { generateGrid } from '../../../../utils/grid';
 import { selectActiveTile } from '../../../sidebar/slice';
-import { setTileInGrid, selectColumns, selectRows, selectTileSize, selectCurrentGrid } from '../../slice';
+import { setTileInGrid, selectColumns, selectRows, selectTileSize, selectCurrentGrid, selectMode } from '../../slice';
 
 import { useOnMouseMove } from '../../../../shared/hooks/useOnMouseMove';
 import { getDatasetFromElement } from '../../../../utils/getDatasetFromElement';
@@ -15,6 +15,7 @@ interface Props {
 
 export const Grid = () => {
   const dispatch = useDispatch();
+  const mode = useSelector(selectMode);
   const rows = useSelector(selectRows);
   const cols = useSelector(selectColumns);
   const tileSize = useSelector(selectTileSize);
@@ -36,12 +37,12 @@ export const Grid = () => {
     dispatch(setTileInGrid({
       xIndex: x,
       yIndex: y,
-      sprite: activeTile!
+      sprite: mode === 'DRAW' ? activeTile! : null
     }));
   }
 
   const containerRef = useRef(null);
-  useOnMouseMove(containerRef, setTile, [activeTile]);
+  useOnMouseMove(containerRef, setTile, [activeTile, mode]);
 
   return (
     <GridWrapper>

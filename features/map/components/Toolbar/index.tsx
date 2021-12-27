@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { NumberInput } from '../../../../shared/components/NumberInput';
 import { selectColumns, selectRows, setRow, setColumn } from '../../slice';
+import { DeleteButton } from '../DeleteButton';
+import { EditButton } from '../EditButton';
 
 export const Toolbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,8 @@ export const Toolbar: React.FC = () => {
 
   return (
     <ToolbarWrapper>
+      <EditButton />
+      <DeleteButton />
       <div>
         <p>Rows</p>
         <NumberInput number={rows} onChange={onRowChange} />
@@ -39,6 +43,7 @@ const ToolbarWrapper = styled.div`
   border-radius: 8px;
   position: absolute;
   width: fit-content;
+  place-items: flex-end;
   grid-auto-flow: column;
   background: ${({ theme }) => theme.white};
 

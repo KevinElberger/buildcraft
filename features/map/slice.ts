@@ -3,8 +3,12 @@ import { RootState } from '../../store/store';
 import { TileSprite } from '../../shared/config/tiles';
 import { generateEmptyGrid } from '../../utils/grid';
 
+type draw = 'DRAW';
+type erase = 'ERASE';
+
 export interface MapState {
   rows: number;
+  mode: draw | erase;
   columns: number;
   tileSize: number;
   gridLevel: number;
@@ -16,6 +20,7 @@ const initialState: MapState = {
   columns: 10,
   tileSize: 32,
   gridLevel: 1,
+  mode: 'DRAW',
   tiles: {
     1: generateEmptyGrid(),
   },
@@ -38,7 +43,7 @@ export const mapSlice = createSlice({
       state.tiles[state.gridLevel].forEach(col => col.pop());
       state.columns = action.payload;
     },
-    setTileInGrid(state, action: PayloadAction<{ xIndex: number, yIndex: number, sprite: TileSprite }>) {
+    setTileInGrid(state, action: PayloadAction<{ xIndex: number, yIndex: number, sprite: TileSprite | null }>) {
       const { xIndex, yIndex, sprite } = action.payload;
       state.tiles[state.gridLevel][xIndex][yIndex] = sprite;
     },
@@ -46,12 +51,16 @@ export const mapSlice = createSlice({
       Object.keys(state.tiles).forEach((level: string) => {
         state.tiles[Number(level)] = generateEmptyGrid()
       });
+    },
+    setMode(state, action) {
+      state.mode = action.payload;
     }
   },
 })
 
-export const { setRow, setColumn, setTileInGrid, clearGrid } = mapSlice.actions
+export const { setRow, setColumn, setTileInGrid, clearGrid, setMode } = mapSlice.actions
 
+export const selectMode = (state: RootState) => state.map.mode;
 export const selectRows = (state: RootState) => state.map.rows;
 export const selectColumns = (state: RootState) => state.map.columns;
 export const selectTileSize = (state: RootState) => state.map.tileSize;
