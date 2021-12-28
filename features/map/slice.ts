@@ -54,11 +54,14 @@ export const mapSlice = createSlice({
     },
     setMode(state, action) {
       state.mode = action.payload;
+    },
+    deleteGrid(state) {
+      state.tiles[state.gridLevel] = generateEmptyGrid();
     }
   },
 })
 
-export const { setRow, setColumn, setTileInGrid, clearGrid, setMode } = mapSlice.actions
+export const { setRow, setColumn, setTileInGrid, clearGrid, setMode, deleteGrid } = mapSlice.actions
 
 export const selectMode = (state: RootState) => state.map.mode;
 export const selectRows = (state: RootState) => state.map.rows;

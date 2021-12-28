@@ -2,13 +2,13 @@ import { Trash } from '@styled-icons/octicons';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { selectMode, setMode } from '../../slice';
+import { deleteGrid, selectMode } from '../../slice';
 
 export const DeleteButton = () => {
   const dispatch = useDispatch();
   const mode = useSelector(selectMode);
   const setDrawMode = () => {
-    dispatch(setMode('ERASE'));
+    dispatch(deleteGrid());
   };
 
   return (

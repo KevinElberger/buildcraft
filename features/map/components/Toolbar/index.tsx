@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { NumberInput } from '../../../../shared/components/NumberInput';
-import { selectColumns, selectRows, setRow, setColumn } from '../../slice';
+import { selectColumns, selectRows, setColumn, setRow } from '../../slice';
+import { ColumnButton } from '../ColumnButton';
 import { DeleteButton } from '../DeleteButton';
 import { EditButton } from '../EditButton';
+import { RowButton } from '../RowButton';
 
 export const Toolbar: React.FC = () => {
   const dispatch = useDispatch();
   const rows = useSelector(selectRows);
   const cols = useSelector(selectColumns);
-
   const onRowChange = (rowAmount: number) => {
     dispatch(setRow(rowAmount));
   };
@@ -22,28 +22,23 @@ export const Toolbar: React.FC = () => {
     <ToolbarWrapper>
       <EditButton />
       <DeleteButton />
-      <div>
-        <p>Rows</p>
-        <NumberInput number={rows} onChange={onRowChange} />
-      </div>
 
-      <div>
-        <p>Columns</p>
-        <NumberInput number={cols} onChange={onColChange} />
-      </div>
+      <Divider></Divider>
+
+      <RowButton rows={rows} onChange={onRowChange} />
+      <ColumnButton cols={cols} onChange={onColChange} />
     </ToolbarWrapper>
   );
 };
 
 const ToolbarWrapper = styled.div`
   bottom: 24px;
-  padding: 12px;
+  padding: 12px 24px;
   display: grid;
   grid-gap: 24px;
-  border-radius: 8px;
+  border-radius: 10px;
   position: absolute;
-  width: fit-content;
-  place-items: flex-end;
+  place-items: center;
   grid-auto-flow: column;
   background: ${({ theme }) => theme.white};
 
@@ -51,4 +46,10 @@ const ToolbarWrapper = styled.div`
     font-size: 13px;
     margin-bottom: 8px;
   }
+`;
+
+const Divider = styled.div`
+  width: 1px;
+  height: 32px;
+  background: ${({ theme }) => theme.lightgrey};
 `;
