@@ -1,18 +1,27 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components'
+import Header from '../features/header';
 import Map from '../features/map/Map';
 import TileSidebar from '../features/tile-sidebar/TileSidebar';
 
 const Builder: NextPage = () => {
   return (
     <Wrapper>
-      <TileSidebar />
-      <Map />
+      <Header />
+      <Content>
+        <TileSidebar />
+        <Map />
+      </Content>
     </Wrapper>
-  )
+  );
 }
 
 const Wrapper = styled.div`
+  height: 100%;
+  position: relative;
+`;
+
+const Content = styled.div`
   width: 100%;
   height: 100%;
   display: flex;

@@ -10,8 +10,6 @@ export default function Map() {
       <div>
         <Grid />
       </div>
-
-      <Toolbar />
     </MapLayout>
   );
 }
