@@ -1,18 +1,17 @@
 import { Trash } from '@styled-icons/octicons';
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { deleteGrid, selectMode } from '../../slice';
+import { deleteGrid } from '../../slice';
 
 export const DeleteButton = () => {
   const dispatch = useDispatch();
-  const mode = useSelector(selectMode);
-  const setDrawMode = () => {
+  const onDelete = () => {
     dispatch(deleteGrid());
   };
 
   return (
-    <ButtonWrapper role="button" onClick={setDrawMode} className={mode === 'ERASE' ? 'active' : ''}>
+    <ButtonWrapper role="button" onClick={onDelete}>
       <Trash size={16} />
     </ButtonWrapper>
   );
@@ -26,8 +25,7 @@ const ButtonWrapper = styled.div`
   place-items: center;
   cursor: pointer;
 
-  &:hover,
-  &.active  {
+  &:hover {
     background: ${({ theme }) => theme.bgGrey};
   }
 `;

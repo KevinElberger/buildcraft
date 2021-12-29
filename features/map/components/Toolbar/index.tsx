@@ -5,6 +5,7 @@ import { selectColumns, selectRows, setColumn, setRow } from '../../slice';
 import { ColumnButton } from '../ColumnButton';
 import { DeleteButton } from '../DeleteButton';
 import { EditButton } from '../EditButton';
+import { EraseButton } from '../EraseButton';
 import { RowButton } from '../RowButton';
 
 export const Toolbar: React.FC = () => {
@@ -21,6 +22,7 @@ export const Toolbar: React.FC = () => {
   return (
     <ToolbarWrapper>
       <EditButton />
+      <EraseButton />
       <DeleteButton />
 
       <Divider></Divider>
@@ -35,7 +37,7 @@ const ToolbarWrapper = styled.div`
   bottom: 24px;
   padding: 12px 24px;
   display: grid;
-  grid-gap: 24px;
+  grid-gap: 12px;
   border-radius: 10px;
   position: absolute;
   place-items: center;
