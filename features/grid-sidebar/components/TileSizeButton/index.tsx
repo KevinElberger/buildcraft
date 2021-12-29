@@ -18,7 +18,7 @@ export const TileSizeButton: React.FC = () => {
         <Diamond size={16} />
       </ButtonWrapper>
 
-      <NumberInput number={tileSize} onChange={onChange} min={19} max={32} />
+      <NumberInput number={tileSize} onChange={onChange} min={19} max={33} />
     </Wrapper>
   )
 };
