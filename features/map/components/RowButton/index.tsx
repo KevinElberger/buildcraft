@@ -1,8 +1,7 @@
 import { Rows } from '@styled-icons/octicons';
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import * as React from 'react';
+import styled from 'styled-components';
 import { NumberInput } from '../../../../shared/components/NumberInput';
-import { selectMode, setMode } from '../../slice';
 
 interface Props {
   rows: number;
