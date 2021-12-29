@@ -26,9 +26,6 @@ export const Toolbar: React.FC = () => {
       <DeleteButton />
 
       <Divider></Divider>
-
-      <RowButton rows={rows} onChange={onRowChange} />
-      <ColumnButton cols={cols} onChange={onColChange} />
     </ToolbarWrapper>
   );
 };

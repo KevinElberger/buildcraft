@@ -9,61 +9,29 @@ interface Props {
 }
 
 export const ColumnButton = ({ cols, onChange }: Props) => {
-  const [showMenu, setShowMenu] = useState(false);
-
   return (
     <Wrapper>
-      <ButtonWrapper role="button" onClick={() => setShowMenu(!showMenu)} className={showMenu ? 'active' : ''}>
+      <ButtonWrapper role="button">
         <Columns size={16} />
       </ButtonWrapper>
 
-      {showMenu && (
-        <Menu className={showMenu ? 'open' : ''}>
-          <NumberInput number={cols} onChange={onChange} />
-        </Menu>
-      )}
+      <NumberInput number={cols} onChange={onChange} />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
 `;
 
 const ButtonWrapper = styled.div`
   width: 40px;
   height: 40px;
-  border-radius: 8px;
   display: grid;
-  place-items: center;
   cursor: pointer;
-
-  &:hover,
-  &.active  {
-    background: ${({ theme }) => theme.bgGrey};
-  }
-`;
-
-const FadeInUp = keyframes`
-  0% {
-    transform: translate3d(0,20px,0);
-  }
-  100% {
-    transform: translate3d(0,0,0);
-    opacity: 1;
-  }
-`;
-
-const Menu = styled.div`
-  opacity: 0;
+  margin-right: 12px;
   border-radius: 8px;
-  width: max-content;
-  position: absolute;
-  bottom: 48px;
-  background: ${({ theme }) => theme.white};
-
-  &.open {
-    animation: ${FadeInUp} 0.3s forwards;
-  }
+  place-items: center;
 `;
-

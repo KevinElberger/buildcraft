@@ -17,11 +17,11 @@ export const NumberInput = ({ number, onChange }: Props) => {
   return (
     <Wrapper>
       <Button onClick={onDecrement} role="button" data-testid="subtract">
-        <Dash size="16" />
+        <Dash size={12} />
       </Button>
       <div>{number}</div>
       <Button onClick={onIncrement} role="button" data-testid="add">
-        <Plus size="16" />
+        <Plus size={12} />
       </Button>
     </Wrapper>
   );
@@ -30,6 +30,8 @@ export const NumberInput = ({ number, onChange }: Props) => {
 const Wrapper = styled.div`
   padding: 2px;
   display: grid;
+  height: 36px;
+  font-size: 13px;
   user-select: none;
   place-items: center;
   border-radius: 8px;

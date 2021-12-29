@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { H2 } from '../../shared/components/H2';
+import { Small } from '../../shared/components/Small';
 import Tile from '../../shared/components/Tile';
 import { tiles, TileSprite } from '../../shared/config/tiles';
 import { selectActiveTile, setActiveTile } from './slice';
@@ -20,7 +20,7 @@ export default function TileSidebar() {
 
   return (
     <SidebarLayout data-testid="sidebar">
-      <Heading>Blocks</Heading>
+      <Small>Blocks</Small>
 
       <TileWrapper>
         <TileListContainer>
@@ -57,10 +57,4 @@ const TileListContainer = styled.div`
   div.active > div {
     border: 3px solid ${({ theme }) => theme.red};
   }
-`;
-
-const Heading = styled.div`
-  flex-shrink: 0;
-  font-size: 12px;
-  font-weight: 600;
 `;
