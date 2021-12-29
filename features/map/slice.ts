@@ -60,17 +60,24 @@ export const mapSlice = createSlice({
     },
     setTileSize(state, action) {
       state.tileSize = action.payload;
+    },
+    uploadNewMap(state, action) {
+      state.rows = action.payload.rows;
+      state.columns = action.payload.columns;
+      state.gridLevel = 1;
+      state.mode = 'DRAW';
+      state.tiles = action.payload.tiles;
     }
   },
 })
 
-export const { setRow, setColumn, setTileInGrid, clearGrid, setMode, deleteGrid, setTileSize } = mapSlice.actions
+export const { setRow, setColumn, setTileInGrid, clearGrid, setMode, deleteGrid, setTileSize, uploadNewMap } = mapSlice.actions
 
+export const selectMapState = (state: RootState) => state.map;
 export const selectMode = (state: RootState) => state.map.mode;
 export const selectRows = (state: RootState) => state.map.rows;
 export const selectColumns = (state: RootState) => state.map.columns;
 export const selectTileSize = (state: RootState) => state.map.tileSize;
-export const selectAllTiles = (state: RootState) => state.map.tiles;
 export const selectCurrentGrid = (state: RootState) => state.map.tiles[state.map.gridLevel];
 
 export default mapSlice.reducer

@@ -3,10 +3,10 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Small } from '../../../../shared/components/Small';
-import { selectAllTiles } from '../../../map/slice';
+import { selectMapState } from '../../../map/slice';
 
 export const ExportButton: React.FC = () => {
-  const map = useSelector(selectAllTiles);
+  const map = useSelector(selectMapState);
 
   return (
     <Wrapper>
