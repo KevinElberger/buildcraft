@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { generateGrid } from '../../../../utils/grid';
-import { selectActiveTile } from '../../../sidebar/slice';
+import { selectActiveTile } from '../../../tile-sidebar/slice';
 import { setTileInGrid, selectColumns, selectRows, selectTileSize, selectCurrentGrid, selectMode } from '../../slice';
 
 import { useOnMouseMove } from '../../../../shared/hooks/useOnMouseMove';

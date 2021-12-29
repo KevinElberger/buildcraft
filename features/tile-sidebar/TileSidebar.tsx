@@ -22,9 +22,11 @@ export default function Sidebar() {
     <SidebarLayout data-testid="sidebar">
       <H2>Blocks</H2>
 
-      <TileListContainer>
-        {tileset}
-      </TileListContainer>
+      <TileWrapper>
+        <TileListContainer>
+          {tileset}
+        </TileListContainer>
+      </TileWrapper>
     </SidebarLayout>
   );
 }
@@ -33,19 +35,24 @@ const SidebarLayout = styled.div`
   display: flex;
   height: 100%;
   padding: 24px 16px;
-  min-width: 350px;
+  min-width: 260px;
   position: relative;
   flex-direction: column;
   background: ${({ theme }) => theme.white};
   border-right: 1px solid ${({ theme }) => theme.lightgrey};
 `;
 
+const TileWrapper = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
 const TileListContainer = styled.div`
   margin-top: 32px;
   display: grid;
-  grid-gap: 3px;
+  grid-gap: 6px;
   align-self: center;
-  grid-template-columns: repeat(9, 32px);
+  grid-template-columns: repeat(auto-fit, 32px);
 
   div.active > div {
     border: 3px solid ${({ theme }) => theme.red};

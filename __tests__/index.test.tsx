@@ -4,7 +4,7 @@ import Builder from '../pages/index'
 import { configureStore } from '@reduxjs/toolkit'
 import { ReduxProvider } from '../shared/components/ReduxProvider'
 import mapReducer from '../features/map/slice';
-import sidebarReducer from '../features/sidebar/slice';
+import sidebarReducer from '../features/tile-sidebar/slice';
 
 describe('Builder', () => {
   it('renders a grid', () => {

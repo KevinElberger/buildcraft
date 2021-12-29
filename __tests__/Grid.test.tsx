@@ -4,7 +4,7 @@ import { Grid } from '../features/map/components/Grid'
 import { ReduxProvider } from '../shared/components/ReduxProvider'
 import { configureStore } from '@reduxjs/toolkit'
 import mapReducer from '../features/map/slice';
-import sidebarReducer from '../features/sidebar/slice';
+import sidebarReducer from '../features/tile-sidebar/slice';
 
 describe('Grid', () => {
   it('renders the correct number of elements given the rows and cols', () => {
@@ -16,7 +16,7 @@ describe('Grid', () => {
     });
 
     const wrapper = () => (
-      <ReduxProvider reduxStore={store}><Grid rows={10} columns={10} tileSize={10} /></ReduxProvider>
+      <ReduxProvider reduxStore={store}><Grid /></ReduxProvider>
     );
 
     render(wrapper());

@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components'
 import Map from '../features/map/Map';
-import Sidebar from '../features/sidebar/Sidebar';
+import TileSidebar from '../features/tile-sidebar/TileSidebar';
 
 const Builder: NextPage = () => {
   return (
     <Wrapper>
-      <Sidebar />
+      <TileSidebar />
       <Map />
     </Wrapper>
   )
