@@ -25,10 +25,10 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: calc(100vh - 65px);
   background: ${({ theme }) => theme.bgGrey};
 `;
 
