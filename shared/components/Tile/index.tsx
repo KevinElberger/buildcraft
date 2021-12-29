@@ -23,6 +23,7 @@ const ImgWrapper = styled.div<Pick<Props, 'sprite'>>`
   height: 16px;
   width: 16px;
   object-fit: contain;
+  user-select: none;
   background-image: url('/tilesheet.png');
   background-position-x: ${props => props.sprite?.x}px;
   background-position-y: ${props => props.sprite?.y}px;
