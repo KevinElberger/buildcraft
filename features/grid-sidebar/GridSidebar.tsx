@@ -2,9 +2,10 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Small } from '../../shared/components/Small';
-import { ColumnButton } from '../map/components/ColumnButton';
-import { RowButton } from '../map/components/RowButton';
+import { ColumnButton } from './components/ColumnButton';
+import { RowButton } from './components/RowButton';
 import { selectRows, selectColumns, setRow, setColumn } from '../map/slice';
+import { TileSizeButton } from './components/TileSizeButton';
 
 const GridSidebar: React.FC = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const GridSidebar: React.FC = () => {
       <Fieldset>
         <RowButton rows={rows} onChange={onRowChange} />
         <ColumnButton cols={cols} onChange={onColChange} />
+        <TileSizeButton />
       </Fieldset>
     </Layout>
   );

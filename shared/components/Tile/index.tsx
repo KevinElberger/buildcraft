@@ -17,7 +17,7 @@ const Tile = ({ size, sprite, x, y }: Props) => {
   );
 };
 
-export default React.memo(Tile);
+export default Tile;
 
 const ImgWrapper = styled.div<Pick<Props, 'sprite'>>`
   height: 16px;
@@ -31,15 +31,15 @@ const ImgWrapper = styled.div<Pick<Props, 'sprite'>>`
 
 const TileWrapper = styled.div<Pick<Props, 'size' | 'sprite'>>`
   display: flex;
+  cursor: pointer;
   overflow: hidden;
+  border-radius: 2px;
   align-items: center;
   justify-content: center;
   width: ${props => props.size}px;
   height: ${props => props.size}px;
-  cursor: pointer;
-  border-radius: 2px;
+  transition: transform .2s cubic-bezier(.64,.04,.35,1), width .2s cubic-bezier(.64,.04,.35,1), height .2s cubic-bezier(.64,.04,.35,1);
   border: 1px solid ${(props) => props.sprite ? props.theme.black : props.theme.lightgrey};
-  transition: transform .2s cubic-bezier(.64,.04,.35,1);
 
   &:hover {
     transform: scale(1.07);

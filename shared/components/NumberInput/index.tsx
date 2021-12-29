@@ -5,14 +5,16 @@ import { Plus, Dash } from '@styled-icons/octicons';
 interface Props {
   number: number;
   onChange: Function;
+  min?: number;
+  max?: number;
 }
 
-export const NumberInput = ({ number, onChange }: Props) => {
+export const NumberInput = ({ number, onChange, min = 0, max = 51 }: Props) => {
   const onIncrement = () => {
-    if (number + 1 < 51) onChange(number + 1);
+    if (number + 1 < max) onChange(number + 1);
   };
   const onDecrement = () => {
-    if (number - 1 > 0) onChange(number - 1);
+    if (number - 1 > min) onChange(number - 1);
   };
   return (
     <Wrapper>

@@ -16,8 +16,8 @@ export interface MapState {
 };
 
 const initialState: MapState = {
-  rows: 10,
-  columns: 10,
+  rows: 25,
+  columns: 25,
   tileSize: 32,
   gridLevel: 1,
   mode: 'DRAW',
@@ -57,11 +57,14 @@ export const mapSlice = createSlice({
     },
     deleteGrid(state) {
       state.tiles[state.gridLevel] = generateEmptyGrid(state.rows, state.columns);
+    },
+    setTileSize(state, action) {
+      state.tileSize = action.payload;
     }
   },
 })
 
-export const { setRow, setColumn, setTileInGrid, clearGrid, setMode, deleteGrid } = mapSlice.actions
+export const { setRow, setColumn, setTileInGrid, clearGrid, setMode, deleteGrid, setTileSize } = mapSlice.actions
 
 export const selectMode = (state: RootState) => state.map.mode;
 export const selectRows = (state: RootState) => state.map.rows;

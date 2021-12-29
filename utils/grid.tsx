@@ -2,7 +2,7 @@
 import { v4 } from 'uuid';
 import Tile from '../shared/components/Tile';
 
-export const generateEmptyGrid = (rows: number = 10, cols: number = 10) => {
+export const generateEmptyGrid = (rows: number = 25, cols: number = 25) => {
   let grid: any[] = [];
 
   for (let i = 0; i < rows; i++) {
@@ -12,7 +12,7 @@ export const generateEmptyGrid = (rows: number = 10, cols: number = 10) => {
   return grid;
 };
 
-export const generateGrid = (rows: number = 10, cols: number = 10, tileSize: number, currentGrid: any[][]) => {
+export const generateGrid = (rows: number = 25, cols: number = 25, tileSize: number, currentGrid: any[][]) => {
   let grid: any[] = generateEmptyGrid(rows, cols);
 
   grid.forEach((row: any[], xIndex: number) => {
