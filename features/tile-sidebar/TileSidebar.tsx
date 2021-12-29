@@ -6,7 +6,7 @@ import Tile from '../../shared/components/Tile';
 import { tiles, TileSprite } from '../../shared/config/tiles';
 import { selectActiveTile, setActiveTile } from './slice';
 
-export default function Sidebar() {
+export default function TileSidebar() {
   const dispatch = useDispatch();
   const activeTile = useSelector(selectActiveTile);
   const onTileClick = (sprite: TileSprite) => {

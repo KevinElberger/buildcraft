@@ -7,7 +7,9 @@ import { deleteGrid } from '../../slice';
 export const DeleteButton = () => {
   const dispatch = useDispatch();
   const onDelete = () => {
-    dispatch(deleteGrid());
+    if (confirm('This will remove all tiles. Are you sure?')) {
+      dispatch(deleteGrid());
+    }
   };
 
   return (
