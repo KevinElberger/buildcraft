@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components'
-import Header from '../features/header';
+import GridSidebar from '../features/grid-sidebar/GridSidebar';
+import Header from '../features/header/Header';
 import Map from '../features/map/Map';
 import TileSidebar from '../features/tile-sidebar/TileSidebar';
 
@@ -11,6 +12,7 @@ const Builder: NextPage = () => {
       <Content>
         <TileSidebar />
         <Map />
+        <GridSidebar />
       </Content>
     </Wrapper>
   );

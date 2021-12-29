@@ -20,7 +20,7 @@ export default function TileSidebar() {
 
   return (
     <SidebarLayout data-testid="sidebar">
-      <H2>Blocks</H2>
+      <Heading>Blocks</Heading>
 
       <TileWrapper>
         <TileListContainer>
@@ -48,7 +48,7 @@ const TileWrapper = styled.div`
 `;
 
 const TileListContainer = styled.div`
-  margin-top: 32px;
+  margin-top: 24px;
   display: grid;
   grid-gap: 6px;
   align-self: center;
@@ -57,4 +57,10 @@ const TileListContainer = styled.div`
   div.active > div {
     border: 3px solid ${({ theme }) => theme.red};
   }
+`;
+
+const Heading = styled.div`
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
 `;

@@ -22,7 +22,7 @@ export const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     line-height: 1;
     text-rendering: optimizeSpeed;
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol;
   }
 
   #__next {
