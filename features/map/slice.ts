@@ -56,7 +56,7 @@ export const mapSlice = createSlice({
       state.mode = action.payload;
     },
     deleteGrid(state) {
-      state.tiles[state.gridLevel] = generateEmptyGrid();
+      state.tiles[state.gridLevel] = generateEmptyGrid(state.rows, state.columns);
     }
   },
 })
