@@ -70,6 +70,7 @@ export const selectMode = (state: RootState) => state.map.mode;
 export const selectRows = (state: RootState) => state.map.rows;
 export const selectColumns = (state: RootState) => state.map.columns;
 export const selectTileSize = (state: RootState) => state.map.tileSize;
+export const selectAllTiles = (state: RootState) => state.map.tiles;
 export const selectCurrentGrid = (state: RootState) => state.map.tiles[state.map.gridLevel];
 
 export default mapSlice.reducer

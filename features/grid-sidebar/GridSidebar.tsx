@@ -6,6 +6,7 @@ import { ColumnButton } from './components/ColumnButton';
 import { RowButton } from './components/RowButton';
 import { selectRows, selectColumns, setRow, setColumn } from '../map/slice';
 import { TileSizeButton } from './components/TileSizeButton';
+import { ExportButton } from './components/ExportButton';
 
 const GridSidebar: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,11 @@ const GridSidebar: React.FC = () => {
         <ColumnButton cols={cols} onChange={onColChange} />
         <TileSizeButton />
       </Fieldset>
+
+
+      <Divider />
+
+      <ExportButton />
     </Layout>
   );
 };
@@ -48,4 +54,11 @@ const Fieldset = styled.div`
   display: grid;
   grid-gap: 12px;
   margin: 24px 0 12px 12px;
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  margin: 16px 0;
+  background: ${({ theme }) => theme.lightgrey};
 `;
