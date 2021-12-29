@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Grid } from './components/Grid';
-import { Toolbar } from './components/Toolbar';
 
 export default function Map() {
 
