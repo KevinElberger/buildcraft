@@ -10,6 +10,8 @@ export const ImportButton: React.FC = () => {
   const uploadMap = (e: any) => {
     const fileReader = new FileReader();
 
+    if (!e.target.files.length) return;
+
     fileReader.readAsText(e.target.files[0], 'UTF-8');
 
     fileReader.onerror = e => {
